@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "stagecheck",
   "version": "1.0.0",
@@ -15,3 +16,22 @@
     "playwright": "^1.44.0"
   }
 }
+=======
+{
+  "name": "stagecheck",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "audit": "node src/cli.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "@axe-core/playwright": "^4.9.0",
+    "axe-core": "^4.9.0",
+    "express": "^4.19.0",
+    "js-yaml": "^4.1.0",
+    "playwright": "^1.44.0"
+  }
+}
+>>>>>>> 8f72303 (feat: new criteria and advanced full check added)
