@@ -14,10 +14,7 @@ async function runAudit() {
   status.textContent =
     "Crawling page and running checks… this takes 10–20 seconds.";
   document.getElementById("results").style.display = "none";
-<<<<<<< HEAD
-=======
   document.getElementById("timingBar").innerHTML = "";
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
 
   try {
     const res = await fetch("/audit", {
@@ -27,10 +24,7 @@ async function runAudit() {
     });
 
     const data = await res.json();
-<<<<<<< HEAD
-=======
     console.log("timing:", JSON.stringify(data.timing));
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
     if (!res.ok) throw new Error(data.error || "Audit failed");
 
     status.className = "status";
@@ -38,21 +32,15 @@ async function runAudit() {
     renderResults(data);
   } catch (err) {
     status.className = "status error";
-<<<<<<< HEAD
-    status.textContent = "Error: " + err.message;
-=======
     status.textContent = err.message.includes("ERR_HTTP")
       ? "Could not reach that URL. Make sure it is accessible and not behind bot protection."
       : "Error: " + err.message;
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
   } finally {
     btn.disabled = false;
     btn.textContent = "Run audit";
   }
 }
 
-<<<<<<< HEAD
-=======
 function escapeHtml(str) {
   if (!str) return "";
   return String(str)
@@ -80,7 +68,6 @@ function renderTimingStat(label, ms, warnThreshold, errorThreshold) {
   return `<div style="font-size:12px;"><span style="color:#888;">${label}</span><br><strong style="color:${color};">${ms >= 1000 ? (ms / 1000).toFixed(1) + "s" : ms + "ms"}</strong></div>`;
 }
 
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
 function renderResults(data) {
   allIssues = data.issues;
   activeFilter = "all";
@@ -90,8 +77,6 @@ function renderResults(data) {
   document.getElementById("numTotal").textContent = data.summary.total;
   document.getElementById("numPassed").textContent = "—";
 
-<<<<<<< HEAD
-=======
   // Timing bar
   const t = data.timing || {};
   const timingMeta = {
@@ -177,19 +162,12 @@ function renderResults(data) {
       : "";
 
   // Filters
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
   const categories = ["all", ...new Set(allIssues.map((i) => i.category))];
   const filtersEl = document.getElementById("filters");
   filtersEl.innerHTML = categories
     .map(
-<<<<<<< HEAD
-      (c) => `
-      <button class="filter-btn ${c === "all" ? "active" : ""}" onclick="setFilter('${c}')">${c === "all" ? "All issues" : c}</button>
-    `,
-=======
       (c) =>
         `<button class="filter-btn ${c === "all" ? "active" : ""}" onclick="setFilter('${c}')">${c === "all" ? "All issues" : c}</button>`,
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
     )
     .join("");
 
@@ -224,16 +202,6 @@ function renderIssues() {
   el.innerHTML = filtered
     .map(
       (issue) => `
-<<<<<<< HEAD
-      <div class="issue ${issue.type}">
-        <div class="issue-top">
-          <span class="issue-title">${issue.title}</span>
-          <span class="badge badge-${issue.category}">${issue.category}</span>
-        </div>
-        ${issue.detail ? `<div class="issue-detail">${issue.detail}</div>` : ""}
-        ${issue.selector ? `<div class="issue-selector">${issue.selector}</div>` : ""}
-        ${issue.elements?.length ? `<div class="issue-code">${issue.elements.slice(0, 3).join("\n")}</div>` : ""}
-=======
       <div class="issue ${escapeHtml(issue.type)}">
         <div class="issue-top">
           <span class="issue-title">${escapeHtml(issue.title)}</span>
@@ -244,7 +212,6 @@ function renderIssues() {
         ${issue.selector ? `<div class="issue-selector">${escapeHtml(issue.selector)}</div>` : ""}
         ${issue.elements?.length ? `<div class="issue-code">${issue.elements.slice(0, 3).map(escapeHtml).join("<br>")}</div>` : ""}
         ${issue.help ? `<a href="${escapeHtml(issue.help)}" target="_blank" style="font-size:11px;color:#2563eb;display:block;margin-top:6px;">Learn more ↗</a>` : ""}
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
       </div>
     `,
     )

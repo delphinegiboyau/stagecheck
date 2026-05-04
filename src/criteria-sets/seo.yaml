@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # criteria-sets/seo.yaml
 - id: title-length
   category: seo
@@ -11,17 +10,3 @@
   type: warning
   check: snapshot.metaTags.some(m => m.name === 'og:image')
   message: "Missing og:image tag"
-=======
-# criteria-sets/seo.yaml
-- id: title-length
-  category: seo
-  type: error
-  check: snapshot.title.length <= 60
-  message: "Meta title too long ({{snapshot.title.length}} chars)"
-
-- id: og-image-present
-  category: seo
-  type: warning
-  check: snapshot.metaTags.some(m => m.name === 'og:image')
-  message: "Missing og:image tag"
->>>>>>> 8f72303 (feat: new criteria and advanced full check added)
